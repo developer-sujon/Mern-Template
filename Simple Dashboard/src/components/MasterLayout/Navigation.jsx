@@ -50,7 +50,7 @@ function Navigation({ openMenu, setOpenMenu, title = "Home" }) {
   let userProfile = {};
 
   return (
-    <>
+    <div style={{ position: "relative" }}>
       <title>{title}</title>
       <Navbar className="fixed-top px-0 shadow-sm ">
         <Container fluid={true}>
@@ -118,7 +118,7 @@ function Navigation({ openMenu, setOpenMenu, title = "Home" }) {
           </div>
         </Container>
       </Navbar>
-    </>
+    </div>
   );
 }
 

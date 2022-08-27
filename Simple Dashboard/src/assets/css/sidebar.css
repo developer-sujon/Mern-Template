@@ -63,13 +63,12 @@
 
 .side-bar-item {
   display: inline-block;
-  padding: 12px 5px 12px 5px;
+  padding: 8px 5px 8px 5px;
   width: 100% !important;
 }
 .side-bar-item:hover {
-  border-left: 4px solid #cb0c9f;
+  border-left: 4px solid #7510f7;
   transition: 0.2s;
-  background-color: #f3d9ec;
 }
 .side-bar-item:hover .side-bar-item-icon {
   color: #363b64;
@@ -78,12 +77,19 @@
   color: #363b64;
 }
 .side-bar-item-active {
-  border-left: 4px solid #cb0c9f;
-  background-color: #f3d9ec;
+  border-left: 4px solid #7510f7;
   display: inline-block;
-  padding: 12px 5px 12px 5px;
+  padding: 8px 5px 8px 5px;
   width: 100% !important;
 }
+
+.side-bar-item-active .side-bar-item-icon,
+.side-bar-item-active .side-bar-item-caption,
+.side-bar-item:hover .side-bar-item-icon,
+.side-bar-item:hover .side-bar-item-caption {
+  color: #7510F7;
+}
+
 .side-bar-item-icon {
   font-size: 18px;
   margin-left: 10px;
@@ -237,7 +243,7 @@ button.accordion-button {
 }
 
 .accordion-button {
-  border-left: 4px solid #cb0c9f !important;
+  border-left: 4px solid #7510f7 !important;
   transition: 0.2s;
   background-color: #f3d9ec !important;
   display: inline-block;

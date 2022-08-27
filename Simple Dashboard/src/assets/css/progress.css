@@ -1,5 +1,5 @@
 /*Line Progress*/
-.LoadingOverlay {
+.loading__overlay {
   position: absolute;
   display: block;
   height: 100%;
@@ -11,10 +11,10 @@
   z-index: 500000 !important;
   background-color: rgba(255, 255, 255, 0.2);
 }
-.Line-Progress .indeterminate {
-  background-color: #cb0c9f;
+.indeterminate {
+  background-color: #7510F7;
 }
-.Line-Progress .indeterminate:before {
+.indeterminate:before {
   z-index: -100 !important;
   height: 3px;
   content: "";
@@ -28,7 +28,7 @@
     infinite;
   animation: indeterminate 2.1s cubic-bezier(0.65, 0.815, 0.735, 0.395) infinite;
 }
-.Line-Progress .indeterminate:after {
+.indeterminate:after {
   z-index: -100 !important;
   height: 3px;
   content: "";

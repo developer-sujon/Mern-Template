@@ -1,16 +1,16 @@
 //external lib imports
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import FullScreenLoader from "./components/MasterLayout/FullScreenLoader";
-import CreatePasswordPage from "./pages/CreatePasswordPage/CreatePasswordPage";
-import DashboardPage from "./pages/DashboardPage/DashboardPage";
-import LoginPage from "./pages/LoginPage/LoginPage";
-import ProfilePage from "./pages/ProfilePage/ProfilePage";
-import RegistrationPage from "./pages/RegistrationPage/RegistrationPage";
-import SendOptPage from "./pages/SendOptPage/SendOptPage";
-import SettingPage from "./pages/SettingPage/SettingPage";
-import VerifyOptPage from "./pages/VerifyOptPage/VerifyOptPage";
 
 //internal lib imports
+import DashboardPage from "./pages/DashboardPage/DashboardPage";
+import ProfilePage from "./pages/UserPage/ProfilePage/ProfilePage";
+import SettingPage from "./pages/UserPage/SettingPage/SettingPage";
+import FullScreenLoader from "./components/Common/FullScreenLoader";
+import CreatePasswordPage from "./pages/AccountRecoveryPage/CreatePasswordPage/CreatePasswordPage";
+import SendOptPage from "./pages/AccountRecoveryPage/SendOptPage/SendOptPage";
+import VerifyOptPage from "./pages/AccountRecoveryPage/VerifyOptPage/VerifyOptPage";
+import LoginPage from "./pages/AuthPage/LoginPage/LoginPage";
+import RegistrationPage from "./pages/AuthPage/RegistrationPage/RegistrationPage";
 
 const App = () => {
   return (
