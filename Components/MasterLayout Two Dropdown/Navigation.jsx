@@ -1,4 +1,5 @@
 //External Lib Import
+import React, { useEffect } from "react";
 import { useState } from "react";
 import { Container, Navbar } from "react-bootstrap";
 import {
@@ -7,16 +8,24 @@ import {
   AiOutlineUser,
 } from "react-icons/ai";
 import { BsArrowsFullscreen } from "react-icons/bs";
-import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
+import UserRequest from "../../APIRequest/UserRequest";
+import ToastMessage from "../../helper/ToastMessage";
 
 //Internal Lib Import
-import Logo from "../../assets/images/logo.svg";
-import SessionHelper from "../../helper/SessionHelper";
+import { SetLogout } from "../../redux/slices/AuthSlice";
+import store from "../../redux/store/store";
 
 function Navigation({ openMenu, setOpenMenu, title = "Home" }) {
   const [isFullScreen, setIsFullScreen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState(false);
+
+  useEffect(() => {
+    UserRequest.UserDetails();
+  }, []);
+
+  const { UserDetails } = useSelector((state) => state.User);
 
   const FullScreen = () => {
     if (isFullScreen === true) {
@@ -42,17 +51,20 @@ function Navigation({ openMenu, setOpenMenu, title = "Home" }) {
   };
 
   const logoutUser = () => {
-    SessionHelper.removeToken("accessToken");
-    SessionHelper.removeUserDetails("user");
-    window.location.href = "/login";
+    store.dispatch(SetLogout());
+    ToastMessage.successMessage("User Logout Successfull");
   };
-
-  let userProfile = {};
 
   return (
     <>
-      <title>{title}</title>
-      <Navbar className="fixed-top px-0 shadow-sm ">
+      <title>Inventory - {title}</title>
+      <Navbar
+        className={
+          openMenu
+            ? "fixed-top px-0 shadow-sm top-nav-open "
+            : "fixed-top px-0 shadow-sm top-nav-close"
+        }
+      >
         <Container fluid={true}>
           <Navbar.Brand>
             <button
@@ -61,9 +73,6 @@ function Navigation({ openMenu, setOpenMenu, title = "Home" }) {
             >
               <AiOutlineMenuUnfold />
             </button>
-            <Link to="/">
-              <img className="nav-logo mx-2" src={Logo} alt="logo" />
-            </Link>
           </Navbar.Brand>
 
           <div className="float-right h-auto d-flex">
@@ -76,8 +85,8 @@ function Navigation({ openMenu, setOpenMenu, title = "Home" }) {
             <div className="user-dropdown">
               <img
                 className="icon-nav-img icon-nav"
-                src="https://firebasestorage.googleapis.com/v0/b/portfolio-66931.appspot.com/o/avata.jpg?alt=media&token=9a5ea3bc-e734-4174-a90b-5c468aacff74"
-                alt={userProfile && userProfile.userName}
+                src={UserDetails && UserDetails.Image}
+                alt={UserDetails && UserDetails.Phone}
                 onClick={() => setOpenDropdown(!openDropdown)}
               />
               <div
@@ -90,10 +99,10 @@ function Navigation({ openMenu, setOpenMenu, title = "Home" }) {
                 <div className="mt-4 text-center">
                   <img
                     className="icon-nav-img"
-                    src="https://firebasestorage.googleapis.com/v0/b/portfolio-66931.appspot.com/o/avata.jpg?alt=media&token=9a5ea3bc-e734-4174-a90b-5c468aacff74"
-                    alt={userProfile && userProfile.userName}
+                    src={UserDetails && UserDetails.Image}
+                    alt={UserDetails && UserDetails.Phone}
                   />
-                  <h6>{userProfile && userProfile.name}</h6>
+                  <h6>{UserDetails && UserDetails.Name}</h6>
                   <hr className="user-dropdown-divider  p-0" />
                 </div>
                 <NavLink

@@ -5,15 +5,12 @@ import ReactCodeInput from "react-code-input";
 import { Container, Col, Row, Card, Button, Form } from "react-bootstrap";
 
 //External lib Import
-import ApiRequest from "../../APIRequest/ApiRequest";
 import ToastMessage from "../../helper/ToastMessage";
-import SessionHelper from "../../helper/SessionHelper";
+import UserRequest from "../../APIRequest/UserRequest";
 
 const VerifyOtp = () => {
-  const [otp, setOtp] = useState("");
-  let email = SessionHelper.getOtpEmail();
-
   const navigate = useNavigate();
+  const [otp, setOtp] = useState("");
 
   let defaultInputStyle = {
     fontFamily: "monospace",
@@ -38,11 +35,9 @@ const VerifyOtp = () => {
     if (otp.length !== 6) {
       ToastMessage.errorMessage("Invalid OTP Code");
     } else {
-      ApiRequest.VerifyOtpCode(email, otp).then((response) => {
-        if (response) {
-          ToastMessage.successMessage(response.data.message);
-          SessionHelper.setOtp(otp);
-          navigate("/create-password");
+      UserRequest.VerifyRecoveryOtp(otp).then((result) => {
+        if (result) {
+          navigate("/reset-password");
         }
       });
     }
@@ -67,7 +62,7 @@ const VerifyOtp = () => {
                 />
 
                 <Button
-                  variant="primary"
+                  variant="success"
                   type="sumbit"
                   className="w-100 animated fadeInUp float-end mt-4"
                 >

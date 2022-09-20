@@ -4,8 +4,8 @@ import { Link } from "react-router-dom";
 import { AiOutlineMenuUnfold } from "react-icons/ai";
 
 //Internal Lib Import
-import logo from "../assets/images/logo.svg";
-import LazyLoader from "../components/MasterLayout/LazyLoader";
+import logo from "../../assets/images/logo.svg";
+import LazyLoader from "../Common/LazyLoader";
 
 const AppNavigation = ({ title }) => {
   return (
